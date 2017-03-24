@@ -60,7 +60,7 @@ ProgramsWidget::ProgramsWidget(Device *device, QWidget *parent)
 	// TODO: remove these once the buttons all work
 	ui->edit->setVisible(true);
 	ui->add->setVisible(false);
-	ui->remove->setVisible(false);
+	//ui->remove->setVisible(false);
 	ui->args->setVisible(false);
 	ui->transfer->setVisible(false);
 	ui->compile->setVisible(true);
