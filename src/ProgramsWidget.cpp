@@ -249,11 +249,44 @@ void ProgramsWidget::compile()
 	qDebug() << "ret = " << ret;
 }
 
+bool removeDir(const QString & dirName)
+{
+	bool result = true;
+	QDir dir(dirName);
+
+	if (dir.exists(dirName)) {
+		Q_FOREACH(QFileInfo info, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::System | QDir::Hidden  | QDir::AllDirs | QDir::Files, QDir::DirsFirst)) {
+			if (info.isDir()) {
+				result = removeDir(info.absoluteFilePath());
+			}
+			else {
+				result = QFile::remove(info.absoluteFilePath());
+			}
+
+			if (!result) {
+				return result;
+			}
+		}
+		result = dir.rmdir(dirName);
+	}
+	return result;
+}
+
 void ProgramsWidget::remove()
 {
 	QModelIndexList currents = ui->programs->selectionModel()->selectedIndexes();
 	if(currents.size() != 1) return;
-	SystemPrefix::ref().rootManager()->uninstall(m_model->name(currents[0]));
+
+  	const QString name = m_model->name(currents[0]);
+
+  	qDebug() << " remove clicked on: " << name;
+
+	const QString projectPath = botui::pathToKISS + name;
+
+	qDebug() << " removing " << projectPath;
+	//SystemPrefix::ref().rootManager()->uninstall(m_model->name(currents[0]));
+	removeDir(projectPath);
+
 	update();
 }
  
@@ -309,6 +342,6 @@ void ProgramsWidget::update()
 	ui->edit->setEnabled(good);
 	ui->remove->setEnabled(good);
 	ui->args->setEnabled(good);
-  const QDir flashDrive("/kovan/media/sda1");
+    const QDir flashDrive("/kovan/media/sda1");
 	ui->transfer->setEnabled(good && flashDrive.exists());
 }
