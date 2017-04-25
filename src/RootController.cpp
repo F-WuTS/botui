@@ -100,9 +100,9 @@ bool RootController::isFullscreen() const
 
 void RootController::constrain(QWidget *widget)
 {
-	// 480x242 is the default Wallaby resolution
-	widget->setMinimumSize(480, 242);
-	widget->setMaximumSize(480, 242);
+	// 480x272 is the default Wallaby resolution
+	widget->setMinimumSize(480, 272);
+	widget->setMaximumSize(480, 272);
 }
 
 void RootController::present(QWidget *widget)
