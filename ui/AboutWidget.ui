@@ -126,7 +126,7 @@
      <item>
       <widget class="QGroupBox" name="wifiBox">
        <property name="title">
-        <string>Wi-Fi Info</string>
+        <string>Developers</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
@@ -134,14 +134,7 @@
           <item>
            <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>SSID:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="ssid">
-            <property name="text">
-             <string/>
+             <string>Philip Trauner</string>
             </property>
            </widget>
           </item>
@@ -152,14 +145,7 @@
           <item>
            <widget class="QLabel" name="label_8">
             <property name="text">
-             <string>Password:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="password">
-            <property name="text">
-             <string/>
+             <string>Christoph Heiss</string>
             </property>
            </widget>
           </item>
