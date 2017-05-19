@@ -33,12 +33,10 @@ GuiSettingsWidget::GuiSettingsWidget(Device *device, QWidget *parent)
 	performStandardSetup(tr("GUI Settings"));
 	
 	connect(ui->colors, SIGNAL(currentIndexChanged(int)), SLOT(colorChanged(int)));
-  connect(ui->fullscreen, SIGNAL(stateChanged(int)), SLOT(fullscreenChanged(int)));
 	
 	SettingsProvider *settings = device->settingsProvider();
 	if(!settings) {
 		ui->colors->setEnabled(false);
-    ui->fullscreen->setEnabled(false);
 		return;
 	}
 	
@@ -51,9 +49,6 @@ GuiSettingsWidget::GuiSettingsWidget(Device *device, QWidget *parent)
 		}
 	}
 	ui->colors->setCurrentIndex(current);
-  
-  const bool currentFullscreen = settings->value(FULLSCREEN_KEY, true).toBool();
-  ui->fullscreen->setChecked(currentFullscreen);
 }
 
 GuiSettingsWidget::~GuiSettingsWidget()
@@ -80,18 +75,6 @@ void GuiSettingsWidget::colorChanged(int index)
 	settings->setValue(GUI_COLOR_KEY, selection);
 	updateStyle(device());
 	settings->sync();
-}
-
-void GuiSettingsWidget::fullscreenChanged(int state)
-{
-  SettingsProvider *const settings = device()->settingsProvider();
-  if(!settings) return;
-  
-  const bool fullscreen = state == Qt::Checked ? true : false;
-  settings->setValue(FULLSCREEN_KEY, fullscreen);
-  settings->sync();
-  
-  RootController::ref().setFullscreen(fullscreen);
 }
 
 void GuiSettingsWidget::updateWidgets()
