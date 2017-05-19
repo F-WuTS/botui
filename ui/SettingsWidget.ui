@@ -61,28 +61,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="calibrate">
-         <property name="text">
-          <string>Calibrate</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../rc/icons.qrc">
-           <normaloff>:/icons/monitor.png</normaloff>:/icons/monitor.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="hideUi">
-         <property name="text">
-          <string>Hide UI</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../rc/icons.qrc">
-           <normaloff>:/icons/application_osx_terminal.png</normaloff>:/icons/application_osx_terminal.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -111,17 +89,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="network">
-         <property name="text">
-          <string>Network</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../rc/icons.qrc">
-           <normaloff>:/icons/drive_network.png</normaloff>:/icons/drive_network.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QPushButton" name="language">
          <property name="text">
           <string>Language</string>
@@ -129,17 +96,6 @@
          <property name="icon">
           <iconset resource="../rc/icons.qrc">
            <normaloff>:/icons/world.png</normaloff>:/icons/world.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="update">
-         <property name="text">
-          <string>Update</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../rc/icons.qrc">
-           <normaloff>:/icons/arrow_rotate_clockwise.png</normaloff>:/icons/arrow_rotate_clockwise.png</iconset>
          </property>
         </widget>
        </item>
