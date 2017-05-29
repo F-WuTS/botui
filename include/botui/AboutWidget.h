@@ -16,6 +16,8 @@ public:
 	~AboutWidget();
 	
 private:
+	QString getIpAddress() const;
+
 	Ui::AboutWidget *ui;
 };
 

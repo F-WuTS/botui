@@ -16,14 +16,10 @@ public:
 	~SettingsWidget();
 	
 public slots:
-	void network();
 	void comm();
 	void channels();
 	void gui();
-	void calibrate();
 	void language();
-  void update();
-  void hideUi();
   void battery();
   void cameraView();
 	

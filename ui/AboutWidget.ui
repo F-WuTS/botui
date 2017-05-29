@@ -126,7 +126,7 @@
      <item>
       <widget class="QGroupBox" name="wifiBox">
        <property name="title">
-        <string>Developers</string>
+        <string>Wi-Fi Info</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
@@ -134,18 +134,14 @@
           <item>
            <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>Philip Trauner</string>
+             <string>IP address:</string>
             </property>
            </widget>
           </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QLabel" name="label_8">
+           <widget class="QLabel" name="ipAddress">
             <property name="text">
-             <string>Christoph Heiss</string>
+             <string></string>
             </property>
            </widget>
           </item>
