@@ -78,17 +78,6 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QPushButton" name="comm">
-         <property name="text">
-          <string>Communic...</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../rc/icons.qrc">
-           <normaloff>:/icons/server.png</normaloff>:/icons/server.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QPushButton" name="language">
          <property name="text">
           <string>Language</string>
@@ -107,6 +96,17 @@
          <property name="icon">
           <iconset resource="../rc/icons.qrc">
            <normaloff>:/icons/lightning.png</normaloff>:/icons/lightning.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="network">
+         <property name="text">
+          <string>Wi-Fi</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../rc/icons.qrc">
+           <normaloff>:/icons/drive_network.png</normaloff>:/icons/drive_network.png</iconset>
          </property>
         </widget>
        </item>

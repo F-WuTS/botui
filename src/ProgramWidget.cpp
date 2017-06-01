@@ -5,7 +5,6 @@
 #include "StatusBar.h"
 #include "Device.h"
 #include "CompileProvider.h"
-#include "LockScreen.h"
 #include "Program.h"
 #include "UiStandards.h"
 
@@ -19,9 +18,6 @@ ProgramWidget::ProgramWidget(Program *program, Device *device, QWidget *parent)
 {
   ui->setupUi(this);
   performStandardSetup(tr("Program"), false);
-  // QAction *lock = menuBar()->addAction(UiStandards::lockString());
-  // connect(lock, SIGNAL(triggered()), SLOT(lock()));
-  
   ui->extra->setVisible(false);
   
   connect(m_program, SIGNAL(started()), SLOT(started()));
@@ -71,11 +67,6 @@ ProgramWidget::ProgramWidget(Program *program, Device *device, QWidget *parent)
   
     buttonProvider->reset();
   }
-}
-
-void ProgramWidget::lock()
-{
-  LockScreen::lock();
 }
 
 void ProgramWidget::started()

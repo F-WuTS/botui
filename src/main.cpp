@@ -4,11 +4,8 @@
 #include "HomeWidget.h"
 #include "StatusBar.h"
 #include "WallabyDevice.h"
-#include "FirstRunWizard.h"
-#include "FactoryWidget.h"
 #include "NetworkManager.h"
 #include "GuiSettingsWidget.h"
-#include "TestWizard.h"
 #include "KovanSerialBridge.h"
 #include "CursorManager.h"
 #include "SettingsProvider.h"
@@ -52,10 +49,7 @@ int main(int argc, char* argv[])
   KovanSerialBridge::ref().init(&device);
   NetworkManager::ref();
 #endif
-  
-  SettingsProvider *const settings = device.settingsProvider();
-  const bool fullscreen = settings && settings->value("fullscreen", true).toBool();
-  RootController::ref().setFullscreen(fullscreen);
+
 	GuiSettingsWidget::updateStyle(&device);
   
 	RootController::ref().presentWidget(new HomeWidget(&device));

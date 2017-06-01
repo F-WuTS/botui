@@ -20,7 +20,6 @@ public:
 	~ProgramWidget();
 	
 public slots:
-	void lock();
 	void started();
 	
 private slots:

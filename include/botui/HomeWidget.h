@@ -17,13 +17,11 @@ public:
 
 public slots:
 	void programs();
-	void fileManager();
 	void motorsSensors();
 	void settings();
 	void about();
-  void shutDown();
-	void lock();
-	
+	void shutDown();
+
 private:
 	Ui::HomeWidget *ui;
 };

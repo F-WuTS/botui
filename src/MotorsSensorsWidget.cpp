@@ -6,10 +6,8 @@
 #include "ServosWidget.h"
 #include "CombinedMotorWidget.h"
 #include "PidTunerWidget.h"
-#include "DepthSensorWidget.h"
 #include "SensorsWidget.h"
 #include "SensorListWidget.h"
-#include "NotYetImplementedDialog.h"
 
 MotorsSensorsWidget::MotorsSensorsWidget(Device *device, QWidget *parent)
 	: StandardWidget(device, parent),
@@ -24,11 +22,9 @@ MotorsSensorsWidget::MotorsSensorsWidget(Device *device, QWidget *parent)
 	connect(ui->sensorList, SIGNAL(clicked()), SLOT(sensorList()));
 	connect(ui->camera, SIGNAL(clicked()), SLOT(camera()));
 	connect(ui->pidTuner, SIGNAL(clicked()), SLOT(pidTuner()));
-	connect(ui->depth, SIGNAL(clicked()), SLOT(depth()));
 
 	// TODO: remove these once the widgets work on the Wallaby
 	ui->pidTuner->setVisible(false);
-	ui->depth->setVisible(false);
 }
 
 MotorsSensorsWidget::~MotorsSensorsWidget()
@@ -64,9 +60,4 @@ void MotorsSensorsWidget::camera()
 void MotorsSensorsWidget::pidTuner()
 {
 	RootController::ref().presentWidget(new PidTunerWidget(device()));
-}
-
-void MotorsSensorsWidget::depth()
-{
-  // FIXME: RootController::ref().presentWidget(new DepthSensorWidget(device()));
 }

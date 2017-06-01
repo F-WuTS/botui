@@ -2,7 +2,6 @@
 
 #include "Device.h"
 #include "NetworkStatusWidget.h"
-#include "TimeWidget.h"
 #include "BatteryWidget.h"
 
 

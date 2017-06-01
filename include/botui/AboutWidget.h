@@ -14,10 +14,8 @@ Q_OBJECT
 public:
 	AboutWidget(Device *device, QWidget *parent = 0);
 	~AboutWidget();
-	
-private:
-	QString getIpAddress() const;
 
+private:
 	Ui::AboutWidget *ui;
 };
 

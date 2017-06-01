@@ -10,15 +10,12 @@
 #include "RootController.h"
 #include "SettingsWidget.h"
 #include "AboutWidget.h"
-#include "UnderConstructionWidget.h"
 #include "MotorsSensorsWidget.h"
 #include "ProgramsWidget.h"
-#include "FileManagerWidget.h"
 #include "Device.h"
 #include "ProgramSelectionWidget.h"
 #include "Program.h"
 #include "UiStandards.h"
-#include "LockScreen.h"
 
 HomeWidget::HomeWidget(Device *device, QWidget *parent)
 	: StandardWidget(device, parent),
@@ -28,15 +25,9 @@ HomeWidget::HomeWidget(Device *device, QWidget *parent)
 	performStandardSetup(UiStandards::homeString());
 	
 	connect(ui->programs, SIGNAL(clicked()), SLOT(programs()));
-	connect(ui->fileManager, SIGNAL(clicked()), SLOT(fileManager()));
 	connect(ui->motorsSensors, SIGNAL(clicked()), SLOT(motorsSensors()));
 	connect(ui->settings, SIGNAL(clicked()), SLOT(settings()));
 
-	// TODO: fix fileManager and then remove this line
-	ui->fileManager->setVisible(false);
-
-	//QAction *lock = menuBar()->addAction(UiStandards::lockString());
-	// connect(lock, SIGNAL(triggered()), SLOT(lock()));
 	QAction *about = menuBar()->addAction(tr("About"));
 	QAction *shutDown = menuBar()->addAction(tr("Shut Down"));
 	menuBar()->adjustSize() ;
@@ -54,11 +45,6 @@ void HomeWidget::programs()
 	RootController::ref().presentWidget(Program::instance()->isRunning()
 		? (QWidget *)new ProgramSelectionWidget(device())
 		: (QWidget *)new ProgramsWidget(device()));
-}
-
-void HomeWidget::fileManager()
-{
-	RootController::ref().presentWidget(new FileManagerWidget(device()));
 }
 
 void HomeWidget::motorsSensors()
@@ -88,9 +74,4 @@ void HomeWidget::shutDown()
 #else
   QMessageBox::information(this, "Not Available", "Shut down is only available on the kovan.");
 #endif
-}
-
-void HomeWidget::lock()
-{
-	LockScreen::lock();
 }

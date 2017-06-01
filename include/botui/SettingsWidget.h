@@ -16,7 +16,6 @@ public:
 	~SettingsWidget();
 	
 public slots:
-	void comm();
 	void channels();
 	void gui();
 	void language();

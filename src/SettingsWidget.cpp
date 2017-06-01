@@ -6,14 +6,11 @@
 #include "Device.h"
 #include "Calibrate.h"
 #include "Options.h"
-#include "NotYetImplementedDialog.h"
 
 #include "NetworkSettingsWidget.h"
-#include "CommunicationSettingsWidget.h"
 #include "ChannelConfigurationsWidget.h"
 #include "GuiSettingsWidget.h"
 #include "LanguageWidget.h"
-#include "WallabyUpdateWidget.h"
 #include "BatterySettingsWidget.h"
 #include "CameraSettingsWidget.h"
 
@@ -26,14 +23,11 @@ SettingsWidget::SettingsWidget(Device *device, QWidget *parent)
 	ui->setupUi(this);
 	performStandardSetup(tr("Settings"));
 
-	connect(ui->comm, SIGNAL(clicked()), SLOT(comm()));
 	connect(ui->channels, SIGNAL(clicked()), SLOT(channels()));
 	connect(ui->gui, SIGNAL(clicked()), SLOT(gui()));
   connect(ui->battery, SIGNAL(clicked()), SLOT(battery()));
   connect(ui->cameraView, SIGNAL(clicked()), SLOT(cameraView()));
 
-	//TODO show buttons once the widgets are fixed
-	ui->comm->setVisible(false);
 	connect(ui->language, SIGNAL(clicked()), SLOT(language()));
 	connect(ui->network, SIGNAL(clicked()), SLOT(network()));
 }
@@ -41,11 +35,6 @@ SettingsWidget::SettingsWidget(Device *device, QWidget *parent)
 SettingsWidget::~SettingsWidget()
 {
 	delete ui;
-}
-
-void SettingsWidget::comm()
-{
-	RootController::ref().presentWidget(new CommunicationSettingsWidget(device()));
 }
 
 void SettingsWidget::channels()
