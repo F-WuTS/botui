@@ -34,6 +34,8 @@ SettingsWidget::SettingsWidget(Device *device, QWidget *parent)
 
 	//TODO show buttons once the widgets are fixed
 	ui->comm->setVisible(false);
+	connect(ui->language, SIGNAL(clicked()), SLOT(language()));
+	connect(ui->network, SIGNAL(clicked()), SLOT(network()));
 }
 
 SettingsWidget::~SettingsWidget()
@@ -69,4 +71,9 @@ void SettingsWidget::battery()
 void SettingsWidget::cameraView()
 {
   RootController::ref().presentWidget(new CameraSettingsWidget(device()));
+}
+
+void SettingsWidget::network()
+{
+	RootController::ref().presentWidget(new NetworkSettingsWidget(device()));
 }

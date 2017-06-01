@@ -23,6 +23,8 @@ public slots:
   void battery();
   void cameraView();
 	
+	void network();
+
 private:
 	Ui::SettingsWidget *ui;
 };
