@@ -9,42 +9,40 @@
 #include <kovan/camera.hpp>
 #endif
 
-class FileIconProvider : public QFileIconProvider
-{
+class FileIconProvider : public QFileIconProvider {
 public:
-	FileIconProvider()
-		: m_icon(QIcon(":/icons/photos.png"))
-	{
-		
-	}
-	
-	virtual QIcon icon(const QFileInfo &info) const
-	{
-		return m_icon;
-	}
-	
+        FileIconProvider()
+                : m_icon(QIcon(":/icons/photos.png"))
+        {
+        }
+
+        virtual QIcon icon(const QFileInfo& info) const
+        {
+                return m_icon;
+        }
+
 private:
-	QIcon m_icon;
+        QIcon m_icon;
 };
 
-ChannelConfigurationsModel::ChannelConfigurationsModel(QObject *parent)
-	: QFileSystemModel(parent),
-	m_iconProvider(new FileIconProvider)
+ChannelConfigurationsModel::ChannelConfigurationsModel(QObject* parent)
+        : QFileSystemModel(parent)
+        , m_iconProvider(new FileIconProvider)
 {
-	setIconProvider(m_iconProvider);
-	const QString configPath = QString::fromStdString(Camera::ConfigPath::path());
-	QDir().mkpath(configPath);
-	setNameFilters(QStringList() << ("*." + QString::fromStdString(Camera::ConfigPath::extension())));
-	setNameFilterDisables(false);
-	setRootPath(configPath);
+        setIconProvider(m_iconProvider);
+        const QString configPath = QString::fromStdString(Camera::ConfigPath::path());
+        QDir().mkpath(configPath);
+        setNameFilters(QStringList() << ("*." + QString::fromStdString(Camera::ConfigPath::extension())));
+        setNameFilterDisables(false);
+        setRootPath(configPath);
 }
 
 ChannelConfigurationsModel::~ChannelConfigurationsModel()
 {
-	delete m_iconProvider;
+        delete m_iconProvider;
 }
 
 QModelIndex ChannelConfigurationsModel::defaultConfiguration() const
 {
-	return index(QString::fromStdString(Camera::ConfigPath::defaultConfigPath()));
+        return index(QString::fromStdString(Camera::ConfigPath::defaultConfigPath()));
 }

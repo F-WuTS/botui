@@ -6,15 +6,15 @@
 #include "Device.h"
 #include <QDebug>
 
-KissIdeSettingsWidget::KissIdeSettingsWidget(Device *device, QWidget *parent)
-	: StandardWidget(device, parent),
-	ui(new Ui::KissIdeSettingsWidget)
+KissIdeSettingsWidget::KissIdeSettingsWidget(Device* device, QWidget* parent)
+        : StandardWidget(device, parent)
+        , ui(new Ui::KissIdeSettingsWidget)
 {
-	ui->setupUi(this);
-	performStandardSetup(tr("KISS IDE Settings"));
+        ui->setupUi(this);
+        performStandardSetup(tr("KISS IDE Settings"));
 }
 
 KissIdeSettingsWidget::~KissIdeSettingsWidget()
 {
-	delete ui;
+        delete ui;
 }

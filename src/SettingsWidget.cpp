@@ -16,53 +16,52 @@
 
 #include <QDebug>
 
-SettingsWidget::SettingsWidget(Device *device, QWidget *parent)
-	: StandardWidget(device, parent),
-	ui(new Ui::SettingsWidget)
+SettingsWidget::SettingsWidget(Device* device, QWidget* parent)
+        : StandardWidget(device, parent)
+        , ui(new Ui::SettingsWidget)
 {
-	ui->setupUi(this);
-	performStandardSetup(tr("Settings"));
+        ui->setupUi(this);
+        performStandardSetup(tr("Settings"));
 
-	connect(ui->channels, SIGNAL(clicked()), SLOT(channels()));
-	connect(ui->gui, SIGNAL(clicked()), SLOT(gui()));
-  connect(ui->battery, SIGNAL(clicked()), SLOT(battery()));
-  connect(ui->cameraView, SIGNAL(clicked()), SLOT(cameraView()));
-
-	connect(ui->language, SIGNAL(clicked()), SLOT(language()));
-	connect(ui->network, SIGNAL(clicked()), SLOT(network()));
+        connect(ui->channels, SIGNAL(clicked()), SLOT(channels()));
+        connect(ui->gui, SIGNAL(clicked()), SLOT(gui()));
+        connect(ui->battery, SIGNAL(clicked()), SLOT(battery()));
+        connect(ui->cameraView, SIGNAL(clicked()), SLOT(cameraView()));
+        connect(ui->language, SIGNAL(clicked()), SLOT(language()));
+        connect(ui->network, SIGNAL(clicked()), SLOT(network()));
 }
 
 SettingsWidget::~SettingsWidget()
 {
-	delete ui;
+        delete ui;
 }
 
 void SettingsWidget::channels()
 {
-	RootController::ref().presentWidget(new ChannelConfigurationsWidget(device()));
+        RootController::ref().presentWidget(new ChannelConfigurationsWidget(device()));
 }
 
 void SettingsWidget::gui()
 {
-	RootController::ref().presentWidget(new GuiSettingsWidget(device()));
+        RootController::ref().presentWidget(new GuiSettingsWidget(device()));
 }
 
 void SettingsWidget::language()
 {
-  RootController::ref().presentWidget(new LanguageWidget(device()));
+        RootController::ref().presentWidget(new LanguageWidget(device()));
 }
 
 void SettingsWidget::battery()
 {
-  RootController::ref().presentWidget(new BatterySettingsWidget(device()));
+        RootController::ref().presentWidget(new BatterySettingsWidget(device()));
 }
 
 void SettingsWidget::cameraView()
 {
-  RootController::ref().presentWidget(new CameraSettingsWidget(device()));
+        RootController::ref().presentWidget(new CameraSettingsWidget(device()));
 }
 
 void SettingsWidget::network()
 {
-	RootController::ref().presentWidget(new NetworkSettingsWidget(device()));
+        RootController::ref().presentWidget(new NetworkSettingsWidget(device()));
 }

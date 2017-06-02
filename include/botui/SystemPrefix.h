@@ -4,14 +4,13 @@
 #include "Singleton.h"
 #include <pcompiler/root_manager.hpp>
 
-class SystemPrefix : public Singleton<SystemPrefix>
-{
+class SystemPrefix : public Singleton<SystemPrefix> {
 public:
-  SystemPrefix();
-  Compiler::RootManager *rootManager();
-  
+        SystemPrefix();
+        Compiler::RootManager* rootManager();
+
 private:
-  Compiler::RootManager _rootManager;
+        Compiler::RootManager _rootManager;
 };
 
 #endif

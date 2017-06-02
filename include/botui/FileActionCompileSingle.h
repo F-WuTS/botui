@@ -10,16 +10,15 @@
 class Device;
 class ConcurrentCompile;
 
-class FileActionCompileSingle : public QObject, public FileActionExtension
-{
-Q_OBJECT
+class FileActionCompileSingle : public QObject, public FileActionExtension {
+        Q_OBJECT
 public:
-	FileActionCompileSingle();
-	virtual bool act(const QString &path, Device *device) const;
-	
+        FileActionCompileSingle();
+        virtual bool act(const QString& path, Device* device) const;
+
 public slots:
-	void compileStarted(const QString &name, ConcurrentCompile *compiler);
-	void compileFinished(const Compiler::OutputList &output, ConcurrentCompile *compiler);
+        void compileStarted(const QString& name, ConcurrentCompile* compiler);
+        void compileFinished(const Compiler::OutputList& output, ConcurrentCompile* compiler);
 };
 
 #endif

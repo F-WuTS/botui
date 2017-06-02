@@ -19,20 +19,20 @@
 #include <QDebug>
 
 FileActionCompile::FileActionCompile()
-	: FileActionExtension(QObject::tr("Compile"), QStringList() << "kissproj")
+        : FileActionExtension(QObject::tr("Compile"), QStringList() << "kissproj")
 {
-	qRegisterMetaType<Compiler::OutputList>("Compiler::OutputList");
+        qRegisterMetaType<Compiler::OutputList>("Compiler::OutputList");
 }
 
-bool FileActionCompile::act(const QString &path, Device *device) const
+bool FileActionCompile::act(const QString& path, Device* device) const
 {
-	// Sanity check
-	QFileInfo input(path);
-	if(!input.isFile()) {
-		qWarning() << "We don't know how to compile a non-file";
-		return false;
-	}
-	/*
+        // Sanity check
+        QFileInfo input(path);
+        if (!input.isFile()) {
+                qWarning() << "We don't know how to compile a non-file";
+                return false;
+        }
+        /*
 	// Create a program archive containing the input file
 	kiss::KarPtr archive = kiss::Kar::create(input.path());
   qDebug() << archive->files();
@@ -95,39 +95,39 @@ bool FileActionCompile::act(const QString &path, Device *device) const
 	// more assured in the future.
 	RootController::ref().presentWidget(new ProgramsWidget(device));
 	*/
-	return true;
+        return true;
 }
 
-void FileActionCompile::compileStarted(const QString &name, ConcurrentCompile *compiler)
+void FileActionCompile::compileStarted(const QString& name, ConcurrentCompile* compiler)
 {
-	if(!compiler) {
-		qWarning() << "sender is null";
-		return;
-	}
-	
-	LogDialog *log = reinterpret_cast<LogDialog *>(compiler->userData());
-	log->setStatus(tr("Compiling..."));
+        if (!compiler) {
+                qWarning() << "sender is null";
+                return;
+        }
+
+        LogDialog* log = reinterpret_cast<LogDialog*>(compiler->userData());
+        log->setStatus(tr("Compiling..."));
 }
 
-void FileActionCompile::compileFinished(const Compiler::OutputList &output, ConcurrentCompile *compiler)
+void FileActionCompile::compileFinished(const Compiler::OutputList& output, ConcurrentCompile* compiler)
 {
-	if(!compiler) {
-		qWarning() << "sender is null";
-		return;
-	}
+        if (!compiler) {
+                qWarning() << "sender is null";
+                return;
+        }
 
-	LogDialog *log = reinterpret_cast<LogDialog *>(compiler->userData());
-	foreach(const Compiler::Output& out, output) {
-		log->appendText(CompileHelpers::postProcess(out.output()));
-		log->appendText(CompileHelpers::postProcess(out.error()));
-	}
-	
-	// This is more so something will be in the log.
-	// It's disconcerting when it's entirely empty.
-	log->appendText("Compile finished.");
-	
-	log->setStatus(Compiler::Output::isSuccess(output) ? tr("Success!") : tr("Failure."));
-	log->setDismissable(true);
+        LogDialog* log = reinterpret_cast<LogDialog*>(compiler->userData());
+        foreach (const Compiler::Output& out, output) {
+                log->appendText(CompileHelpers::postProcess(out.output()));
+                log->appendText(CompileHelpers::postProcess(out.error()));
+        }
+
+        // This is more so something will be in the log.
+        // It's disconcerting when it's entirely empty.
+        log->appendText("Compile finished.");
+
+        log->setStatus(Compiler::Output::isSuccess(output) ? tr("Success!") : tr("Failure."));
+        log->setDismissable(true);
 }
 
 REGISTER_FILE_ACTION(FileActionCompile)

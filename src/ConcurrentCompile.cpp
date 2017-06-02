@@ -3,36 +3,36 @@
 #include "Device.h"
 #include "CompileProvider.h"
 
-ConcurrentCompile::ConcurrentCompile(const QString &name, const kiss::KarPtr &archive, Device *device)
-	: m_name(name),
-	m_archive(archive),
-	m_device(device)
+ConcurrentCompile::ConcurrentCompile(const QString& name, const kiss::KarPtr& archive, Device* device)
+        : m_name(name)
+        , m_archive(archive)
+        , m_device(device)
 {
 }
 
 void ConcurrentCompile::run()
 {
-	emit compileStarted(m_name, this);
-	m_output = m_device->compileProvider()->compile(m_name, m_archive);
-	emit compileFinished(m_output, this);
+        emit compileStarted(m_name, this);
+        m_output = m_device->compileProvider()->compile(m_name, m_archive);
+        emit compileFinished(m_output, this);
 }
 
-void ConcurrentCompile::setUserData(void *data)
+void ConcurrentCompile::setUserData(void* data)
 {
-	m_userData = data;
+        m_userData = data;
 }
 
-void *ConcurrentCompile::userData() const
+void* ConcurrentCompile::userData() const
 {
-	return m_userData;
+        return m_userData;
 }
 
 bool ConcurrentCompile::isFinished() const
 {
-	return !m_output.isEmpty();
+        return !m_output.isEmpty();
 }
 
-const Compiler::OutputList &ConcurrentCompile::output() const
+const Compiler::OutputList& ConcurrentCompile::output() const
 {
-	return m_output;
+        return m_output;
 }

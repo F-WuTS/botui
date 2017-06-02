@@ -19,20 +19,20 @@
 
 using namespace Compiler;
 
-KissCompileProvider::KissCompileProvider(Device *device, QObject *parent)
-	: CompileProvider(parent),
-	m_device(device)
+KissCompileProvider::KissCompileProvider(Device* device, QObject* parent)
+        : CompileProvider(parent)
+        , m_device(device)
 {
 }
 
-Compiler::OutputList KissCompileProvider::compile(const QString &name, const kiss::KarPtr &program)
+Compiler::OutputList KissCompileProvider::compile(const QString& name, const kiss::KarPtr& program)
 {
-	if(program.isNull()) {
-		return OutputList() << Output(name, 1,
-			QByteArray(), "error: KarPtr is null");
-	}
-	
-	/* FIXME:
+        if (program.isNull()) {
+                return OutputList() << Output(name, 1,
+                                              QByteArray(), "error: KarPtr is null");
+        }
+
+        /* FIXME:
 	const QString path = tempPath();
 	qDebug() << path;
 	
@@ -53,11 +53,11 @@ Compiler::OutputList KissCompileProvider::compile(const QString &name, const kis
 	
   ret << SystemPrefix::ref().rootManager()->install(ret, name);
   */
-  OutputList ret;
-  return ret;
+        OutputList ret;
+        return ret;
 }
 
 QString KissCompileProvider::tempPath() const
 {
-	return QDir::tempPath() + "/" + QDateTime::currentDateTime().toString("yyMMddhhmmss") + ".botui";
+        return QDir::tempPath() + "/" + QDateTime::currentDateTime().toString("yyMMddhhmmss") + ".botui";
 }

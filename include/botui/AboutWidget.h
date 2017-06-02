@@ -3,21 +3,18 @@
 
 #include "StandardWidget.h"
 
-namespace Ui
-{
-	class AboutWidget;
+namespace Ui {
+class AboutWidget;
 }
 
-class AboutWidget : public StandardWidget
-{
-Q_OBJECT
+class AboutWidget : public StandardWidget {
+        Q_OBJECT
 public:
-	AboutWidget(Device *device, QWidget *parent = 0);
-	~AboutWidget();
+        AboutWidget(Device* device, QWidget* parent = 0);
+        ~AboutWidget();
 
 private:
-	Ui::AboutWidget *ui;
+        Ui::AboutWidget* ui;
 };
-
 
 #endif

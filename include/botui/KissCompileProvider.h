@@ -9,17 +9,16 @@
 
 class Device;
 
-class KissCompileProvider : public CompileProvider
-{
+class KissCompileProvider : public CompileProvider {
 public:
-	KissCompileProvider(Device *device, QObject *parent = 0);
-	Compiler::OutputList compile(const QString &name, const kiss::KarPtr &archive);
-	
+        KissCompileProvider(Device* device, QObject* parent = 0);
+        Compiler::OutputList compile(const QString& name, const kiss::KarPtr& archive);
+
 private:
-	QString tempPath() const;
-	
-	Device *m_device;
-	QMap<QString, QString> m_executables;
+        QString tempPath() const;
+
+        Device* m_device;
+        QMap<QString, QString> m_executables;
 };
 
 #endif

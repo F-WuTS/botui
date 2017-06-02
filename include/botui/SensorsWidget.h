@@ -5,28 +5,26 @@
 #include "MenuBar.h"
 #include "PlotWidget.h"
 
-namespace Ui
-{
-	class SensorsWidget;
+namespace Ui {
+class SensorsWidget;
 }
 
-class SensorsWidget : public QWidget
-{
-Q_OBJECT
+class SensorsWidget : public QWidget {
+        Q_OBJECT
 public:
-	SensorsWidget(Device *device, QWidget *parent = 0);
-	~SensorsWidget();
-	
+        SensorsWidget(Device* device, QWidget* parent = 0);
+        ~SensorsWidget();
+
 public slots:
-	void update();
-	
+        void update();
+
 private:
-	double rawValue(const int &i) const;
-	double value(const int &i) const;
-	
-	MenuBar *m_menuBar;
-	Ui::SensorsWidget *ui;
-	PlotHandle m_plots[2];
+        double rawValue(const int& i) const;
+        double value(const int& i) const;
+
+        MenuBar* m_menuBar;
+        Ui::SensorsWidget* ui;
+        PlotHandle m_plots[2];
 };
 
 #endif

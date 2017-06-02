@@ -6,32 +6,31 @@
 #include <QProcess>
 #include <QTime>
 
-class Program : public QObject
-{
-Q_OBJECT
+class Program : public QObject {
+        Q_OBJECT
 public:
-	~Program();
-	
-	bool isRunning();
-	
-	QProcess *process() const;
-	
-	static Program *instance();
-	
+        ~Program();
+
+        bool isRunning();
+
+        QProcess* process() const;
+
+        static Program* instance();
+
 public slots:
-	bool start(const QString& path, const QStringList &arguments = QStringList());
-	void stop();
-	
+        bool start(const QString& path, const QStringList& arguments = QStringList());
+        void stop();
+
 signals:
-	void started();
-	void finished(int exitCode, QProcess::ExitStatus exitStatus);
-	
+        void started();
+        void finished(int exitCode, QProcess::ExitStatus exitStatus);
+
 private:
-	Program();
-	Program(const Program& rhs);
-	
-	QProcess *m_process;
-	QTime m_time;
+        Program();
+        Program(const Program& rhs);
+
+        QProcess* m_process;
+        QTime m_time;
 };
 
 #endif

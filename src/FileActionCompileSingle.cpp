@@ -18,14 +18,17 @@
 #include <QDebug>
 
 FileActionCompileSingle::FileActionCompileSingle()
-	: FileActionExtension(QObject::tr("Compile"), QStringList() << "c" << "cc" << "cxx" << "cpp")
+        : FileActionExtension(QObject::tr("Compile"), QStringList() << "c"
+                                                                    << "cc"
+                                                                    << "cxx"
+                                                                    << "cpp")
 {
-	qRegisterMetaType<Compiler::OutputList>("Compiler::OutputList");
+        qRegisterMetaType<Compiler::OutputList>("Compiler::OutputList");
 }
 
-bool FileActionCompileSingle::act(const QString &path, Device *device) const
+bool FileActionCompileSingle::act(const QString& path, Device* device) const
 {
-	/*
+        /*
 	// Sanity check
 	QFileInfo input(path);
 	if(!input.isFile()) {
@@ -90,39 +93,39 @@ bool FileActionCompileSingle::act(const QString &path, Device *device) const
 	// more assured in the future.
 	RootController::ref().presentWidget(new ProgramsWidget(device));
 	*/
-	return true;
+        return true;
 }
 
-void FileActionCompileSingle::compileStarted(const QString &name, ConcurrentCompile *compiler)
+void FileActionCompileSingle::compileStarted(const QString& name, ConcurrentCompile* compiler)
 {
-	if(!compiler) {
-		qWarning() << "sender is null";
-		return;
-	}
-	
-	LogDialog *log = reinterpret_cast<LogDialog *>(compiler->userData());
-	log->setStatus(tr("Compiling..."));
+        if (!compiler) {
+                qWarning() << "sender is null";
+                return;
+        }
+
+        LogDialog* log = reinterpret_cast<LogDialog*>(compiler->userData());
+        log->setStatus(tr("Compiling..."));
 }
 
-void FileActionCompileSingle::compileFinished(const Compiler::OutputList &output, ConcurrentCompile *compiler)
+void FileActionCompileSingle::compileFinished(const Compiler::OutputList& output, ConcurrentCompile* compiler)
 {
-	if(!compiler) {
-		qWarning() << "sender is null";
-		return;
-	}
+        if (!compiler) {
+                qWarning() << "sender is null";
+                return;
+        }
 
-	LogDialog *log = reinterpret_cast<LogDialog *>(compiler->userData());
-	foreach(const Compiler::Output& out, output) {
-		log->appendText(CompileHelpers::postProcess(out.output()));
-		log->appendText(CompileHelpers::postProcess(out.error()));
-	}
-	
-	// This is more so something will be in the log.
-	// It's disconcerting when it's entirely empty.
-	log->appendText("Compile finished.");
-	
-	log->setStatus(Compiler::Output::isSuccess(output) ? tr("Success!") : tr("Failure."));
-	log->setDismissable(true);
+        LogDialog* log = reinterpret_cast<LogDialog*>(compiler->userData());
+        foreach (const Compiler::Output& out, output) {
+                log->appendText(CompileHelpers::postProcess(out.output()));
+                log->appendText(CompileHelpers::postProcess(out.error()));
+        }
+
+        // This is more so something will be in the log.
+        // It's disconcerting when it's entirely empty.
+        log->appendText("Compile finished.");
+
+        log->setStatus(Compiler::Output::isSuccess(output) ? tr("Success!") : tr("Failure."));
+        log->setDismissable(true);
 }
 
 REGISTER_FILE_ACTION(FileActionCompileSingle)

@@ -8,13 +8,12 @@
 #include <cstddef>
 
 template <std::size_t n>
-struct type_of_size
-{
-    typedef char type[n];
+struct type_of_size {
+        typedef char type[n];
 };
 
 template <typename T, std::size_t size>
-typename type_of_size<size>::type& sizeof_array_h(T(&)[size]);
+typename type_of_size<size>::type& sizeof_array_h(T (&)[size]);
 
 #define sizeof_array(a) (sizeof(sizeof_array_h(a)))
 

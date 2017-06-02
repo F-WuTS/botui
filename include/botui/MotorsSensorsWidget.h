@@ -3,28 +3,26 @@
 
 #include "StandardWidget.h"
 
-namespace Ui
-{
-	class MotorsSensorsWidget;
+namespace Ui {
+class MotorsSensorsWidget;
 }
 
-class MotorsSensorsWidget : public StandardWidget
-{
-Q_OBJECT
+class MotorsSensorsWidget : public StandardWidget {
+        Q_OBJECT
 public:
-	MotorsSensorsWidget(Device *device, QWidget *parent = 0);
-	~MotorsSensorsWidget();
-	
+        MotorsSensorsWidget(Device* device, QWidget* parent = 0);
+        ~MotorsSensorsWidget();
+
 private slots:
-	void servos();
-	void motors();
-	void sensorGraph();
-	void sensorList();
-	void camera();
-	void pidTuner();
+        void servos();
+        void motors();
+        void sensorGraph();
+        void sensorList();
+        void camera();
+        void pidTuner();
 
 private:
-	Ui::MotorsSensorsWidget *ui;
+        Ui::MotorsSensorsWidget* ui;
 };
 
 #endif

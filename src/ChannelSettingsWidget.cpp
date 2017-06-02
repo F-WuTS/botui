@@ -3,38 +3,38 @@
 
 #include "NumpadDialog.h"
 
-ChannelSettingsWidget::ChannelSettingsWidget(Device *device, QWidget *parent)
-	: StandardWidget(device, parent),
-	ui(new Ui::ChannelSettingsWidget)
+ChannelSettingsWidget::ChannelSettingsWidget(Device* device, QWidget* parent)
+        : StandardWidget(device, parent)
+        , ui(new Ui::ChannelSettingsWidget)
 {
-	ui->setupUi(this);
-	performStandardSetup(tr("Channel Settings"));
-	
-	ui->minBlobSizeEdit->setInputProvider(new NumpadDialog(tr("Min Blob Size"), NumpadDialog::Integer, 0, 500));
+        ui->setupUi(this);
+        performStandardSetup(tr("Channel Settings"));
+
+        ui->minBlobSizeEdit->setInputProvider(new NumpadDialog(tr("Min Blob Size"), NumpadDialog::Integer, 0, 500));
 }
 
 ChannelSettingsWidget::~ChannelSettingsWidget()
 {
-	emit configChanged(m_index, m_config);
-	delete ui;
+        emit configChanged(m_index, m_config);
+        delete ui;
 }
 
-void ChannelSettingsWidget::setConfig(const Config &config)
+void ChannelSettingsWidget::setConfig(const Config& config)
 {
-	m_config = config;
+        m_config = config;
 }
 
-const Config &ChannelSettingsWidget::config() const
+const Config& ChannelSettingsWidget::config() const
 {
-	return m_config;
+        return m_config;
 }
 
-void ChannelSettingsWidget::setIndex(const QModelIndex &index)
+void ChannelSettingsWidget::setIndex(const QModelIndex& index)
 {
-	m_index = index;
+        m_index = index;
 }
 
-const QModelIndex &ChannelSettingsWidget::index() const
+const QModelIndex& ChannelSettingsWidget::index() const
 {
-	return m_index;
+        return m_index;
 }

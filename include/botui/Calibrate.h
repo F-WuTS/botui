@@ -1,13 +1,12 @@
 #ifndef _CALIBRATE_H_
 #define _CALIBRATE_H_
 
-class Calibrate
-{
+class Calibrate {
 public:
-	static bool calibrate();
-	
+        static bool calibrate();
+
 private:
-	Calibrate();
+        Calibrate();
 };
 
 #endif

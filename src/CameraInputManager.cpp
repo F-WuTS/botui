@@ -3,123 +3,124 @@
 #include <QDebug>
 
 CameraInputManager::CameraInputManager()
-	: m_camDevice(new Camera::Device()),
-	m_source(CameraInputManager::UsbCamera),
-	m_timer(new QTimer(this)),
-	m_frameRate(1),
-	m_refs(0),
-	m_reentryBarrier(false)
+        : m_camDevice(new Camera::Device())
+        , m_source(CameraInputManager::UsbCamera)
+        , m_timer(new QTimer(this))
+        , m_frameRate(1)
+        , m_refs(0)
+        , m_reentryBarrier(false)
 {
-	qRegisterMetaType<cv::Mat>("cv::Mat");
-	m_image = cv::Mat();
-	connect(m_timer, SIGNAL(timeout()), SLOT(updateCamera()));
+        qRegisterMetaType<cv::Mat>("cv::Mat");
+        m_image = cv::Mat();
+        connect(m_timer, SIGNAL(timeout()), SLOT(updateCamera()));
 }
 
 void CameraInputManager::setSource(const CameraInputManager::Source source)
 {
-	m_source = source;
-	
-	qWarning() << "WARNING: CameraInputManager::setSource not implemented";
+        m_source = source;
+
+        qWarning() << "WARNING: CameraInputManager::setSource not implemented";
 }
 
 CameraInputManager::Source CameraInputManager::source() const
 {
-	return m_source;
+        return m_source;
 }
-	
+
 void CameraInputManager::setFrameRate(int frameRate)
 {
-	m_frameRate = frameRate;
-	m_timer->start(1000.0 / m_frameRate);
+        m_frameRate = frameRate;
+        m_timer->start(1000.0 / m_frameRate);
 }
 
 int CameraInputManager::frameRate() const
 {
-	return m_frameRate;
+        return m_frameRate;
 }
 
 void CameraInputManager::setWidth(const unsigned width)
 {
-	m_camDevice->setWidth(width);
+        m_camDevice->setWidth(width);
 }
 
 void CameraInputManager::setHeight(const unsigned height)
 {
-	m_camDevice->setHeight(height);
+        m_camDevice->setHeight(height);
 }
-	
+
 bool CameraInputManager::retain()
 {
-	++m_refs;
-	updateCamera();
-		
-	return true;
+        ++m_refs;
+        updateCamera();
+
+        return true;
 }
 
 bool CameraInputManager::release()
 {
-	qWarning() << "Releasing!";
-	--m_refs;
-	if(m_refs < 0) {
-		qWarning() << "Release called when reference count was 0!";
-		m_refs = 0;
-		return false;
-	}
-	if(m_refs == 0) {
-		qWarning() << "Closing!";
-		bool success = m_camDevice->close();
-		qWarning() << success;
-		return success;
-	}
-		
-	return true;
+        qWarning() << "Releasing!";
+        --m_refs;
+        if (m_refs < 0) {
+                qWarning() << "Release called when reference count was 0!";
+                m_refs = 0;
+                return false;
+        }
+        if (m_refs == 0) {
+                qWarning() << "Closing!";
+                bool success = m_camDevice->close();
+                qWarning() << success;
+                return success;
+        }
+
+        return true;
 }
 
 bool CameraInputManager::isOpen() const
 {
-	return m_camDevice->isOpen();
+        return m_camDevice->isOpen();
 }
 
 cv::Mat CameraInputManager::image() const
 {
-	return m_image;
+        return m_image;
 }
 
 void CameraInputManager::updateCamera()
 {
-	if(m_reentryBarrier) return;
-	m_reentryBarrier = true;
-	
-	if(!m_refs || !m_camDevice) {
-		setFrameRate(1);
-		m_reentryBarrier = false;
-		return;
-	}
-	if(!m_camDevice->isOpen()) {
-		qWarning() << "Camera device is not yet open";
-		if(!m_camDevice->open()) {
-			qDebug() << "Failed to open camera device... for now.";
-			setFrameRate(1);
-			m_reentryBarrier = false;
-			return;
-		}
-		// m_inputProvider->setWidth(320);
-		// m_inputProvider->setHeight(240);
-		setFrameRate(20);
-	}
-	
-	if(!m_camDevice->update()) {
-		qWarning() << "Camera update failed";
-		// ui->camera->setInvalid(true);
-		m_camDevice->close();
-		setFrameRate(1);
-		m_image = cv::Mat();
-	}
-  else
-    m_image = m_camDevice->rawImage();
-	
-	if(!m_image.empty()) emit frameAvailable(m_image);
-	m_reentryBarrier = false;
+        if (m_reentryBarrier)
+                return;
+        m_reentryBarrier = true;
+
+        if (!m_refs || !m_camDevice) {
+                setFrameRate(1);
+                m_reentryBarrier = false;
+                return;
+        }
+        if (!m_camDevice->isOpen()) {
+                qWarning() << "Camera device is not yet open";
+                if (!m_camDevice->open()) {
+                        qDebug() << "Failed to open camera device... for now.";
+                        setFrameRate(1);
+                        m_reentryBarrier = false;
+                        return;
+                }
+                // m_inputProvider->setWidth(320);
+                // m_inputProvider->setHeight(240);
+                setFrameRate(20);
+        }
+
+        if (!m_camDevice->update()) {
+                qWarning() << "Camera update failed";
+                // ui->camera->setInvalid(true);
+                m_camDevice->close();
+                setFrameRate(1);
+                m_image = cv::Mat();
+        } else
+                m_image = m_camDevice->rawImage();
+
+        if (!m_image.empty())
+                emit frameAvailable(m_image);
+        m_reentryBarrier = false;
 }
 
 /*void CameraInputManager::setInputProvider(Camera::InputProvider *inputProvider)
@@ -127,9 +128,9 @@ void CameraInputManager::updateCamera()
 	const bool wasOpened = m_inputProvider ? m_inputProvider->isOpen() : false;
 	if(m_inputProvider) m_inputProvider->close();
 	delete m_inputProvider;
-	
+
 	m_inputProvider = inputProvider;
-	
+
 	if(m_inputProvider && wasOpened) m_inputProvider->open(0);
 }
 
@@ -147,11 +148,11 @@ CameraInputAdapter::~CameraInputAdapter()
 {
 }
 
-		
+
 bool CameraInputAdapter::open(const int number)
 {
 	m_manager->retain();
-	
+
 	return true;
 }
 

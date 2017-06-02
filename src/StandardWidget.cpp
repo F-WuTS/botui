@@ -5,44 +5,44 @@
 #include "Device.h"
 #include <QLayout>
 
-StandardWidget::StandardWidget(Device *device, QWidget *parent)
-	: QWidget(parent),
-	m_device(device),
-	m_menuBar(new MenuBar(this)),
-	m_statusBar(0)
+StandardWidget::StandardWidget(Device* device, QWidget* parent)
+        : QWidget(parent)
+        , m_device(device)
+        , m_menuBar(new MenuBar(this))
+        , m_statusBar(0)
 {
-
 }
 
 StandardWidget::~StandardWidget()
 {
-	delete m_menuBar;
-	delete m_statusBar;
+        delete m_menuBar;
+        delete m_statusBar;
 }
 
-void StandardWidget::performStandardSetup(const QString& title, const bool &statusBar)
+void StandardWidget::performStandardSetup(const QString& title, const bool& statusBar)
 {
-	m_menuBar->addHomeAndBackButtons();
-	m_menuBar->setTitle(title);
-	layout()->setMenuBar(m_menuBar);
-	
-	if(!statusBar) return;
-	m_statusBar = new StatusBar(this);
-	m_statusBar->loadDefaultWidgets(m_device);
-	layout()->addWidget(m_statusBar);
+        m_menuBar->addHomeAndBackButtons();
+        m_menuBar->setTitle(title);
+        layout()->setMenuBar(m_menuBar);
+
+        if (!statusBar)
+                return;
+        m_statusBar = new StatusBar(this);
+        m_statusBar->loadDefaultWidgets(m_device);
+        layout()->addWidget(m_statusBar);
 }
 
-Device *StandardWidget::device() const
+Device* StandardWidget::device() const
 {
-	return m_device;
+        return m_device;
 }
 
-MenuBar *StandardWidget::menuBar() const
+MenuBar* StandardWidget::menuBar() const
 {
-	return m_menuBar;
+        return m_menuBar;
 }
 
-StatusBar *StandardWidget::statusBar() const
+StatusBar* StandardWidget::statusBar() const
 {
-	return m_statusBar;
+        return m_statusBar;
 }

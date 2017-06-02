@@ -4,30 +4,30 @@
 
 #include <QPushButton>
 
-LogDialog::LogDialog(QWidget *parent)
-	: QDialog(parent),
-	ui(new Ui::LogDialog)
+LogDialog::LogDialog(QWidget* parent)
+        : QDialog(parent)
+        , ui(new Ui::LogDialog)
 {
-	ui->setupUi(this);
-	setDismissable(false);
+        ui->setupUi(this);
+        setDismissable(false);
 }
 
-void LogDialog::setDismissable(const bool &dismissable)
+void LogDialog::setDismissable(const bool& dismissable)
 {
-	ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(dismissable);
+        ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(dismissable);
 }
 
-void LogDialog::setStatus(const QString &status)
+void LogDialog::setStatus(const QString& status)
 {
-	ui->status->setText(status);
+        ui->status->setText(status);
 }
 
-void LogDialog::appendText(const QString &text)
+void LogDialog::appendText(const QString& text)
 {
-	ui->log->insertPlainText(text);
+        ui->log->insertPlainText(text);
 }
 
 void LogDialog::clearText()
 {
-	ui->log->clear();
+        ui->log->clear();
 }

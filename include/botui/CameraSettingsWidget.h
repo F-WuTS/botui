@@ -3,20 +3,18 @@
 
 #include "StandardWidget.h"
 
-namespace Ui
-{
-  class CameraSettingsWidget;
+namespace Ui {
+class CameraSettingsWidget;
 }
 
-class CameraSettingsWidget : public StandardWidget
-{
-Q_OBJECT
+class CameraSettingsWidget : public StandardWidget {
+        Q_OBJECT
 public:
-  CameraSettingsWidget(Device *device, QWidget *const parent = 0);
-  ~CameraSettingsWidget();
-  
+        CameraSettingsWidget(Device* device, QWidget* const parent = 0);
+        ~CameraSettingsWidget();
+
 private:
-  Ui::CameraSettingsWidget *ui;
+        Ui::CameraSettingsWidget* ui;
 };
 
 #endif

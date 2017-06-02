@@ -5,20 +5,19 @@
 
 class QProcess;
 
-class ProcessLogDialog : public LogDialog
-{
-  Q_OBJECT
+class ProcessLogDialog : public LogDialog {
+        Q_OBJECT
 public:
-  ProcessLogDialog(QWidget *const parent = 0);
-  
-  bool start(const QString &path, const QStringList &args = QStringList());
-  
+        ProcessLogDialog(QWidget* const parent = 0);
+
+        bool start(const QString& path, const QStringList& args = QStringList());
+
 private slots:
-  void readOutput();
-  void terminated();
-  
+        void readOutput();
+        void terminated();
+
 private:
-  QProcess * _process;
+        QProcess* _process;
 };
 
 #endif

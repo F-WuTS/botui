@@ -6,20 +6,19 @@
 #include "Device.h"
 #include <QDebug>
 
-CompilingWidget::CompilingWidget(Device *device, QWidget *parent)
-	: StandardWidget(device, parent),
-	ui(new Ui::CompilingWidget)
+CompilingWidget::CompilingWidget(Device* device, QWidget* parent)
+        : StandardWidget(device, parent)
+        , ui(new Ui::CompilingWidget)
 {
-	ui->setupUi(this);
-	performStandardSetup(tr("Compiling..."));
+        ui->setupUi(this);
+        performStandardSetup(tr("Compiling..."));
 }
 
 CompilingWidget::~CompilingWidget()
 {
-	delete ui;
+        delete ui;
 }
 
 void CompilingWidget::compileFinished()
 {
-	
 }

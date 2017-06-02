@@ -13,17 +13,19 @@ ChannelConfigWidgetFactory::~ChannelConfigWidgetFactory()
 {
 }
 
-bool ChannelConfigWidgetFactory::hasConfig(const QString &type)
+bool ChannelConfigWidgetFactory::hasConfig(const QString& type)
 {
-	if(type == CAMERA_CHANNEL_TYPE_HSV_KEY) return true;
-	
-	return false;
+        if (type == CAMERA_CHANNEL_TYPE_HSV_KEY)
+                return true;
+
+        return false;
 }
 
-ChannelConfigWidget *ChannelConfigWidgetFactory::create(const QModelIndex &index, const QString &type)
+ChannelConfigWidget* ChannelConfigWidgetFactory::create(const QModelIndex& index, const QString& type)
 {
-	if(type == CAMERA_CHANNEL_TYPE_HSV_KEY) return new HsvChannelConfigWidget(index);
-	return 0;
+        if (type == CAMERA_CHANNEL_TYPE_HSV_KEY)
+                return new HsvChannelConfigWidget(index);
+        return 0;
 }
 
 ChannelConfigWidgetFactory::ChannelConfigWidgetFactory()

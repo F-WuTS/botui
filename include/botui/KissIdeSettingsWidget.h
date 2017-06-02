@@ -3,20 +3,18 @@
 
 #include "StandardWidget.h"
 
-namespace Ui
-{
-	class KissIdeSettingsWidget;
+namespace Ui {
+class KissIdeSettingsWidget;
 }
 
-class KissIdeSettingsWidget : public StandardWidget
-{
-Q_OBJECT
+class KissIdeSettingsWidget : public StandardWidget {
+        Q_OBJECT
 public:
-	KissIdeSettingsWidget(Device *device, QWidget *parent = 0);
-	~KissIdeSettingsWidget();
-	
+        KissIdeSettingsWidget(Device* device, QWidget* parent = 0);
+        ~KissIdeSettingsWidget();
+
 private:
-	Ui::KissIdeSettingsWidget *ui;
+        Ui::KissIdeSettingsWidget* ui;
 };
 
 #endif

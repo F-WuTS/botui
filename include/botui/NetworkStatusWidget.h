@@ -9,23 +9,21 @@
 
 class NetworkingProvider;
 
-class NetworkStatusWidget : public QWidget
-{
-Q_OBJECT
+class NetworkStatusWidget : public QWidget {
+        Q_OBJECT
 public:
-	NetworkStatusWidget(QWidget *parent = 0);
-	
-	static bool isNetworkUp(const std::string networkName = "wlan0");
+        NetworkStatusWidget(QWidget* parent = 0);
 
+        static bool isNetworkUp(const std::string networkName = "wlan0");
 
 protected:
-	void paintEvent(QPaintEvent *event);
-	
+        void paintEvent(QPaintEvent* event);
+
 private slots:
-	void networkStateChanged();
-	
+        void networkStateChanged();
+
 private:
-	void constrain();
+        void constrain();
 };
 
 #endif

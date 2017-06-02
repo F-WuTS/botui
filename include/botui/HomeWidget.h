@@ -3,28 +3,25 @@
 
 #include "StandardWidget.h"
 
-namespace Ui
-{
-	class HomeWidget;
+namespace Ui {
+class HomeWidget;
 }
 
-class HomeWidget : public StandardWidget
-{
-Q_OBJECT
+class HomeWidget : public StandardWidget {
+        Q_OBJECT
 public:
-	HomeWidget(Device *device, QWidget *parent = 0);
-	~HomeWidget();
+        HomeWidget(Device* device, QWidget* parent = 0);
+        ~HomeWidget();
 
 public slots:
-	void programs();
-	void motorsSensors();
-	void settings();
-	void about();
-	void shutDown();
+        void programs();
+        void motorsSensors();
+        void settings();
+        void about();
+        void shutDown();
 
 private:
-	Ui::HomeWidget *ui;
+        Ui::HomeWidget* ui;
 };
-
 
 #endif

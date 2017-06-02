@@ -3,23 +3,21 @@
 
 #include "StandardWidget.h"
 
-namespace Ui
-{
-	class CompilingWidget;
+namespace Ui {
+class CompilingWidget;
 }
 
-class CompilingWidget : public StandardWidget
-{
-Q_OBJECT
+class CompilingWidget : public StandardWidget {
+        Q_OBJECT
 public:
-	CompilingWidget(Device *device, QWidget *parent = 0);
-	~CompilingWidget();
-	
+        CompilingWidget(Device* device, QWidget* parent = 0);
+        ~CompilingWidget();
+
 private slots:
-	void compileFinished();
-	
+        void compileFinished();
+
 private:
-	Ui::CompilingWidget *ui;
+        Ui::CompilingWidget* ui;
 };
 
 #endif

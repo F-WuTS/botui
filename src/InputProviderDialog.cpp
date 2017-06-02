@@ -1,7 +1,6 @@
 #include "InputProviderDialog.h"
 
-InputProviderDialog::InputProviderDialog(QWidget *parent)
-	: QDialog(parent)
+InputProviderDialog::InputProviderDialog(QWidget* parent)
+        : QDialog(parent)
 {
-	
 }

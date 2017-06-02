@@ -3,21 +3,19 @@
 
 #include <QDialog>
 
-namespace Ui
-{
-	class CreateChannelDialog;
+namespace Ui {
+class CreateChannelDialog;
 }
 
-class CreateChannelDialog : public QDialog
-{
+class CreateChannelDialog : public QDialog {
 public:
-	CreateChannelDialog(QWidget *parent = 0);
-	~CreateChannelDialog();
-	
-	QString type() const;
-	
+        CreateChannelDialog(QWidget* parent = 0);
+        ~CreateChannelDialog();
+
+        QString type() const;
+
 private:
-	Ui::CreateChannelDialog *ui;
+        Ui::CreateChannelDialog* ui;
 };
 
 #endif

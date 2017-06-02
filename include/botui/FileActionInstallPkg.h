@@ -3,11 +3,10 @@
 
 #include "FileActions.h"
 
-class FileActionInstallPkg : public FileActionExtension
-{
+class FileActionInstallPkg : public FileActionExtension {
 public:
-	FileActionInstallPkg();
-	virtual bool act(const QString &path, Device *device) const;
+        FileActionInstallPkg();
+        virtual bool act(const QString& path, Device* device) const;
 };
 
 #endif

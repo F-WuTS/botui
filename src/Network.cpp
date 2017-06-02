@@ -4,105 +4,111 @@
 
 Network::Network()
 {
-	
 }
 
 void Network::setSsid(const QString& ssid)
 {
-	m_ssid = ssid;
+        m_ssid = ssid;
 }
 
 const QString& Network::ssid() const
 {
-	return m_ssid;
+        return m_ssid;
 }
 
 void Network::setSecurity(const Network::Security& security)
 {
-	m_security = security;
+        m_security = security;
 }
 
 const Network::Security& Network::security() const
 {
-	return m_security;
+        return m_security;
 }
 
 QString Network::securityString() const
 {
-	switch(m_security) {
-	case Network::None: return "None";
-	case Network::Wep: return "WEP";
-	case Network::DynamicWep: return "Dynamic WEP";
-	case Network::Wpa: return "WPA";
-	case Network::WpaEnterprise: return "WPA Enterprise";
-	}
-	return "Unknown";
+        switch (m_security) {
+        case Network::None:
+                return "None";
+        case Network::Wep:
+                return "WEP";
+        case Network::DynamicWep:
+                return "Dynamic WEP";
+        case Network::Wpa:
+                return "WPA";
+        case Network::WpaEnterprise:
+                return "WPA Enterprise";
+        }
+        return "Unknown";
 }
 
 void Network::setPassword(const QString& password)
 {
-	m_password = password;
+        m_password = password;
 }
 
 const QString& Network::password() const
 {
-	return m_password;
+        return m_password;
 }
 
-void Network::setMode(const Network::Mode &mode)
+void Network::setMode(const Network::Mode& mode)
 {
-	m_mode = mode;
+        m_mode = mode;
 }
 
-const Network::Mode &Network::mode() const
+const Network::Mode& Network::mode() const
 {
-	return m_mode;
+        return m_mode;
 }
 
-void Network::setStrength(const double &strength)
+void Network::setStrength(const double& strength)
 {
-	m_strength = strength;
+        m_strength = strength;
 }
 
-const double &Network::strength() const
+const double& Network::strength() const
 {
-	return m_strength;
+        return m_strength;
 }
 
 bool Network::isComplete() const
 {
-	if(m_security == Network::None) return true;
-	return !m_password.isEmpty();
+        if (m_security == Network::None)
+                return true;
+        return !m_password.isEmpty();
 }
 
-bool operator==(const Network &lhs, const Network &rhs)
+bool operator==(const Network& lhs, const Network& rhs)
 {
-	return lhs.ssid() == rhs.ssid();
+        return lhs.ssid() == rhs.ssid();
 }
 
-QDebug operator<<(QDebug dbg, const Network &network)
+QDebug operator<<(QDebug dbg, const Network& network)
 {
-	dbg.nospace() << network.ssid() << "("
-		<< (network.mode() == Network::AdHoc ? "ad-hoc" : "infrastructure")
-		<< ")" << " with ";
-	
-	switch(network.security()) {
-	case Network::None:
-		dbg.nospace() << "no security";
-		return dbg.space();
-	case Network::Wep:
-		dbg.nospace() << "WEP";
-		break;
-	case Network::DynamicWep:
-		dbg.nospace() << "Dynamic WEP";
-		break;
-	case Network::Wpa:
-		dbg.nospace() << "WPA";
-		break;
-	case Network::WpaEnterprise:
-		dbg.nospace() << "WPA Enterprise";
-		break;
-	}
-	dbg.nospace() << " (password: " << network.password() << ")";
-	return dbg.space();
+        dbg.nospace() << network.ssid() << "("
+                      << (network.mode() == Network::AdHoc ? "ad-hoc" : "infrastructure")
+                      << ")"
+                      << " with ";
+
+        switch (network.security()) {
+        case Network::None:
+                dbg.nospace() << "no security";
+                return dbg.space();
+        case Network::Wep:
+                dbg.nospace() << "WEP";
+                break;
+        case Network::DynamicWep:
+                dbg.nospace() << "Dynamic WEP";
+                break;
+        case Network::Wpa:
+                dbg.nospace() << "WPA";
+                break;
+        case Network::WpaEnterprise:
+                dbg.nospace() << "WPA Enterprise";
+                break;
+        }
+        dbg.nospace() << " (password: " << network.password() << ")";
+        return dbg.space();
 }

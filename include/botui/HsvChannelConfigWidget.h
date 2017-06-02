@@ -5,40 +5,37 @@
 
 #include <opencv2/core/core.hpp>
 
-namespace Ui
-{
-	class HsvChannelConfigWidget;
+namespace Ui {
+class HsvChannelConfigWidget;
 }
 
 class NumpadDialog;
 
-class HsvChannelConfigWidget : public ChannelConfigWidget
-{
-Q_OBJECT
+class HsvChannelConfigWidget : public ChannelConfigWidget {
+        Q_OBJECT
 public:
-	HsvChannelConfigWidget(const QModelIndex &index, QWidget *parent = 0);
-	~HsvChannelConfigWidget();
-	
-	virtual void refresh();
-	
+        HsvChannelConfigWidget(const QModelIndex& index, QWidget* parent = 0);
+        ~HsvChannelConfigWidget();
+
+        virtual void refresh();
+
 private slots:
-	void visual();
-	void manual();
-	
-	void manualEntry(const QString &number);
-	
-	void visualChanged();
-	
-	void imagePressed(const cv::Mat &image, const int &x, const int &y);
-	
-	void done();
-	
+        void visual();
+        void manual();
+
+        void manualEntry(const QString& number);
+
+        void visualChanged();
+
+        void imagePressed(const cv::Mat& image, const int& x, const int& y);
+
+        void done();
+
 private:
-	
-	void blockChildSignals(const bool &block);
-	
-	Ui::HsvChannelConfigWidget *ui;
-	NumpadDialog *m_numpad;
+        void blockChildSignals(const bool& block);
+
+        Ui::HsvChannelConfigWidget* ui;
+        NumpadDialog* m_numpad;
 };
 
 #endif

@@ -3,27 +3,25 @@
 
 #include "StandardWidget.h"
 
-namespace Ui
-{
-	class GuiSettingsWidget;
+namespace Ui {
+class GuiSettingsWidget;
 }
 
-class GuiSettingsWidget : public StandardWidget
-{
-Q_OBJECT
+class GuiSettingsWidget : public StandardWidget {
+        Q_OBJECT
 public:
-	GuiSettingsWidget(Device *device, QWidget *parent = 0);
-	~GuiSettingsWidget();
-	
-	static void updateStyle(Device *device);
-	
+        GuiSettingsWidget(Device* device, QWidget* parent = 0);
+        ~GuiSettingsWidget();
+
+        static void updateStyle(Device* device);
+
 private slots:
-	void colorChanged(int index);
-	
+        void colorChanged(int index);
+
 private:
-	static void updateWidgets();
-	
-	Ui::GuiSettingsWidget *ui;
+        static void updateWidgets();
+
+        Ui::GuiSettingsWidget* ui;
 };
 
 #endif

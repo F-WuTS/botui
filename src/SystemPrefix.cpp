@@ -3,12 +3,11 @@
 using namespace Compiler;
 
 SystemPrefix::SystemPrefix()
-  : _rootManager("/kovan")
+        : _rootManager("/kovan")
 {
 }
 
-RootManager *SystemPrefix::rootManager()
+RootManager* SystemPrefix::rootManager()
 {
-  return &_rootManager;
+        return &_rootManager;
 }
-  

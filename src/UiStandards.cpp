@@ -4,15 +4,15 @@
 
 QString UiStandards::homeString()
 {
-	return QObject::tr("Home");
+        return QObject::tr("Home");
 }
 
 QString UiStandards::backString()
 {
-	return QObject::tr("Back");
+        return QObject::tr("Back");
 }
 
 QString UiStandards::cancelString()
 {
-	return QObject::tr("Cancel");
+        return QObject::tr("Cancel");
 }

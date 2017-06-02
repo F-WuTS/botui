@@ -14,21 +14,20 @@ class ButtonProvider;
 
 class QAbstractItemModel;
 
-typedef QList<CommunicationProvider *> CommunicationProviderList;
+typedef QList<CommunicationProvider*> CommunicationProviderList;
 
-class Device : public QObject
-{
-Q_OBJECT
+class Device : public QObject {
+        Q_OBJECT
 public:
-	virtual QString name() const = 0;
-	virtual QString version() const = 0;
-	virtual QString id() const = 0;
-	virtual bool isTouchscreen() const = 0;
-	
-	virtual CompileProvider *compileProvider() const = 0;
-	virtual BatteryLevelProvider *batteryLevelProvider() const = 0;
-	virtual SettingsProvider *settingsProvider() const = 0;
-	virtual ButtonProvider *buttonProvider() const = 0;
+        virtual QString name() const = 0;
+        virtual QString version() const = 0;
+        virtual QString id() const = 0;
+        virtual bool isTouchscreen() const = 0;
+
+        virtual CompileProvider* compileProvider() const = 0;
+        virtual BatteryLevelProvider* batteryLevelProvider() const = 0;
+        virtual SettingsProvider* settingsProvider() const = 0;
+        virtual ButtonProvider* buttonProvider() const = 0;
 };
 
 #endif
