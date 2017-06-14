@@ -50,8 +50,6 @@ else()
   find_package(Qt5Network REQUIRED)
 endif()
 
-find_package(OpenSSL REQUIRED)
-
 file(GLOB INCLUDES ${INCLUDE}/*.h ${DEVICE_DIR}/include/*.h)
 file(GLOB SOURCES ${SRC}/*.cpp ${DEVICE_DIR}/src/*.cpp)
 file(GLOB UIS ${UI}/*)

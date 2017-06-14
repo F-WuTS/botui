@@ -2,7 +2,6 @@
 
 #include <QProcess>
 #include <QDebug>
-#include <openssl/sha.h>
 #include <iomanip>
 #include <sstream>
 
@@ -73,16 +72,5 @@ bool SystemUtils::isUserPasswordSet(const QString& user)
 
 QString SystemUtils::sha256(const QString& str)
 {
-        const std::string stdstr = str.toStdString();
-        unsigned char hash[SHA256_DIGEST_LENGTH];
-        SHA256_CTX sha256;
-        SHA256_Init(&sha256);
-        SHA256_Update(&sha256, stdstr.c_str(), stdstr.size());
-        SHA256_Final(hash, &sha256);
-
-        std::stringstream ss;
-        for (int i = 0; i < SHA256_DIGEST_LENGTH; ++i)
-                ss << std::hex << std::setw(2) << std::setfill('0') << (int)hash[i];
-
-        return QString::fromStdString(ss.str());
+	return QString();
 }
