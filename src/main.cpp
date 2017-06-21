@@ -6,7 +6,6 @@
 #include "WallabyDevice.h"
 #include "NetworkManager.h"
 #include "GuiSettingsWidget.h"
-#include "KovanSerialBridge.h"
 #include "CursorManager.h"
 #include "SettingsProvider.h"
 
@@ -45,7 +44,6 @@ int main(int argc, char* argv[])
         Wallaby::Device device;
         CursorManager::ref().setDevice(&device);
 #ifdef QT_DBUS_LIB
-        KovanSerialBridge::ref().init(&device);
         NetworkManager::ref();
 #endif
 

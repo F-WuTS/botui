@@ -1,7 +1,6 @@
 #include "AboutWidget.h"
 #include "ui_AboutWidget.h"
 #include "Device.h"
-#include "SystemUtils.h"
 #include "NetworkManager.h"
 
 #include <QDebug>
