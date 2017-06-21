@@ -12,8 +12,12 @@ AboutWidget::AboutWidget(Device* device, QWidget* parent)
         ui->setupUi(this);
         ui->deviceName->setText(device->name() + " v" + device->version());
 
-        const auto ip = NetworkManager::ref().ipAddress();
+        const NetworkManager& nm = NetworkManager::ref();
+        const QString ip = nm.ipAddress();
         ui->ipAddress->setText(ip.isEmpty() ? tr("No IP") : ip);
+
+        const QString name = nm.hostname();
+        ui->hostname->setText(name.isEmpty() ? "<unknown>" : name);
 
         performStandardSetup(tr("About"));
 }

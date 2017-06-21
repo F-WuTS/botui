@@ -270,6 +270,13 @@ QString NetworkManager::ipAddress() const
         return ret;
 }
 
+QString NetworkManager::hostname() const
+{
+        NMSettings settings(NM_SERVICE, NM_OBJECT "/Settings", QDBusConnection::systemBus());
+
+        return settings.hostname();
+}
+
 NetworkManager::NetworkManager()
         : m_nm(new NMNetworkManager(NM_SERVICE, NM_OBJECT, QDBusConnection::systemBus(), this))
         , m_device(0)

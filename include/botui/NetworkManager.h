@@ -54,6 +54,7 @@ public:
         NetworkList accessPoints() const;
 
         QString ipAddress() const;
+        QString hostname() const;
 
 public slots:
         bool turnOn();
