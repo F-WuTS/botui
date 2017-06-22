@@ -26,21 +26,12 @@ NetworkSettingsWidget::NetworkSettingsWidget(Device* device, QWidget* parent)
 
         enableCoolOffTimer = new QTimer(this);
         enableCoolOffTimer->setSingleShot(true);
-        QObject::connect(enableCoolOffTimer, SIGNAL(timeout()), SLOT(enableAPControls()));
 
         ui->turnOn->setVisible(false);
         ui->turnOff->setVisible(false);
 
         QObject::connect(ui->connect, SIGNAL(clicked()), SLOT(connect()));
         QObject::connect(ui->manage, SIGNAL(clicked()), SLOT(manage()));
-
-        //QObject::connect(ui->turnOn, SIGNAL(clicked()), SLOT(disableAPControlsTemporarily()));
-        //QObject::connect(ui->turnOff, SIGNAL(clicked()), SLOT(disableAPControlsTemporarily()));
-        //NetworkManager::ref().connect(ui->turnOn, SIGNAL(clicked()), SLOT(enableAP())); //SLOT(turnOn()));
-        //NetworkManager::ref().connect(ui->turnOff, SIGNAL(clicked()), SLOT(disableAP())); //SLOT(turnOff()));
-
-        QObject::connect(ui->turnOn, SIGNAL(clicked()), SLOT(enableAP()));
-        QObject::connect(ui->turnOff, SIGNAL(clicked()), SLOT(disableAP()));
 
         // TODO: put back after we support client mode WiFi
         ui->connect->setVisible(false);
@@ -75,38 +66,6 @@ void NetworkSettingsWidget::manage()
         RootController::ref().presentWidget(new ManageNetworksWidget(device()));
 }
 
-void NetworkSettingsWidget::enableAP()
-{
-        disableAPControlsTemporarily();
-        NetworkManager::ref().enableAP();
-}
-
-void NetworkSettingsWidget::disableAP()
-{
-        disableAPControlsTemporarily();
-        NetworkManager::ref().disableAP();
-}
-
-void NetworkSettingsWidget::enableAPControls()
-{
-        ui->turnOn->setEnabled(true);
-        ui->turnOff->setEnabled(true);
-}
-
-void NetworkSettingsWidget::disableAPControls()
-{
-        ui->turnOn->setEnabled(false);
-        ui->turnOff->setEnabled(false);
-}
-
-void NetworkSettingsWidget::disableAPControlsTemporarily()
-{
-        ui->turnOn->setEnabled(false);
-        ui->turnOff->setEnabled(false);
-
-        enableCoolOffTimer->start(20000);
-}
-
 void NetworkSettingsWidget::updateInformation()
 {
         const bool on = NetworkStatusWidget::isNetworkUp(); //NetworkManager::ref().isOn();
@@ -116,7 +75,7 @@ void NetworkSettingsWidget::updateInformation()
         ui->connect->setEnabled(on);
 
         Network active = NetworkManager::ref().active();
-        //ui->ssid->setText(active.ssid());
+        ui->ssid->setText(active.ssid());
         ui->security->setText(active.securityString());
         const QString ip = NetworkManager::ref().ipAddress();
         ui->ip->setText(ip.isEmpty() ? tr("No IP") : ip);
