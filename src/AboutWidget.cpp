@@ -17,7 +17,7 @@ AboutWidget::AboutWidget(Device* device, QWidget* parent)
         ui->ipAddress->setText(ip.isEmpty() ? tr("No IP") : ip);
 
         const QString name = nm.hostname();
-        ui->hostname->setText(name.isEmpty() ? "<unknown>" : name);
+        ui->hostname->setText(name.isEmpty() ? "<unknown>" : name + ".local");
 
         performStandardSetup(tr("About"));
 }
