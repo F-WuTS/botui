@@ -27,7 +27,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QListView" name="networks"/>
+    <widget class="QListWidget" name="networks"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">

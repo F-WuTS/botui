@@ -159,51 +159,6 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,0">
-          <item>
-           <widget class="QLabel" name="passwordLabel">
-            <property name="text">
-             <string>Password:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="password">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <widget class="QLabel" name="securityLabel">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string>Security:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="security">
-            <property name="text">
-             <string>WPA2</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
          <spacer name="verticalSpacer_2">
           <property name="orientation">
            <enum>Qt::Vertical</enum>

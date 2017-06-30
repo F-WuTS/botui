@@ -4,7 +4,6 @@
 #include "RootController.h"
 #include "StatusBar.h"
 #include "NetworkManager.h"
-#include "NetworkItemModel.h"
 #include "OtherNetworkWidget.h"
 #include "Device.h"
 #include <QTimer>

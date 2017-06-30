@@ -12,6 +12,7 @@
 #include "ConnectWidget.h"
 #include "ManageNetworksWidget.h"
 #include "NetworkManager.h"
+#include "NetworkUtils.h"
 
 #include <QTimer>
 
@@ -32,12 +33,8 @@ NetworkSettingsWidget::NetworkSettingsWidget(Device* device, QWidget* parent)
 
         QObject::connect(ui->connect, SIGNAL(clicked()), SLOT(connect()));
         QObject::connect(ui->manage, SIGNAL(clicked()), SLOT(manage()));
-
-        // TODO: put back after we support client mode WiFi
-        ui->connect->setVisible(false);
-        ui->manage->setVisible(false);
-        ui->security->setVisible(false);
-        ui->securityLabel->setVisible(false);
+        QObject::connect(ui->turnOn, SIGNAL(clicked()), SLOT(enableWifi()));
+        QObject::connect(ui->turnOff, SIGNAL(clicked()), SLOT(disableWifi()));
 
         QObject::connect(&NetworkManager::ref(),
                          SIGNAL(stateChanged(const NetworkManager::State&, const NetworkManager::State&)),
@@ -45,7 +42,7 @@ NetworkSettingsWidget::NetworkSettingsWidget(Device* device, QWidget* parent)
 
         QTimer* updateTimer = new QTimer(this);
         QObject::connect(updateTimer, SIGNAL(timeout()), SLOT(updateInformation()));
-        updateTimer->start(10000);
+        updateTimer->start(500);
 
         updateInformation();
 }
@@ -68,23 +65,31 @@ void NetworkSettingsWidget::manage()
 
 void NetworkSettingsWidget::updateInformation()
 {
-        const bool on = NetworkStatusWidget::isNetworkUp(); //NetworkManager::ref().isOn();
+        const bool on = NetworkUtils::isWifiOn();
         ui->state->setText(on ? tr("ON") : tr("OFF"));
         ui->turnOn->setVisible(!on);
         ui->turnOff->setVisible(on);
         ui->connect->setEnabled(on);
 
-        Network active = NetworkManager::ref().active();
-        ui->ssid->setText(active.ssid());
-        ui->security->setText(active.securityString());
+        ui->ssid->setText(NetworkUtils::getCurrentNetwork());
         const QString ip = NetworkManager::ref().ipAddress();
-        ui->ip->setText(ip.isEmpty() ? tr("No IP") : ip);
+        ui->ip->setText(!on ? tr("No IP") : ip);
 }
 
 void NetworkSettingsWidget::stateChanged(const NetworkManager::State& newState, const NetworkManager::State& oldState)
 {
         qDebug() << "State Changed to" << newState;
         QTimer::singleShot(300, this, SLOT(updateInformation()));
+}
+
+void NetworkSettingsWidget::enableWifi()
+{
+        NetworkUtils::turnOnWifi();
+}
+
+void NetworkSettingsWidget::disableWifi()
+{
+        NetworkUtils::turnOffWifi();
 }
 
 #endif

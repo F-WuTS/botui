@@ -23,11 +23,9 @@ public slots:
         void connect();
         void other();
         void refresh();
-        void selectionChanged(const QItemSelection& selection);
 
 private:
         Ui::ConnectWidget* ui;
-        NetworkItemModel* m_model;
 };
 
 #endif

@@ -28,6 +28,9 @@ public slots:
 private slots:
         void stateChanged(const NetworkManager::State& newState, const NetworkManager::State& oldState);
 
+        void enableWifi();
+        void disableWifi();
+
 private:
         Ui::NetworkSettingsWidget* ui;
         QTimer* enableCoolOffTimer;

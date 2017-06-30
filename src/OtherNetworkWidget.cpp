@@ -11,6 +11,7 @@
 #include "NetworkManager.h"
 #include "KeyboardDialog.h"
 #include <QDebug>
+#include "NetworkUtils.h"
 
 const static Network::Security securityChoices[] = {
         Network::None,
@@ -32,10 +33,6 @@ OtherNetworkWidget::OtherNetworkWidget(Device* device, QWidget* parent)
         ui->password->setInputProvider(m_password);
 
         connect(ui->join, SIGNAL(clicked()), SLOT(join()));
-        connect(ui->security, SIGNAL(currentIndexChanged(int)),
-                SLOT(securityChanged(int)));
-
-        securityChanged(0);
 }
 
 OtherNetworkWidget::~OtherNetworkWidget()
@@ -46,36 +43,15 @@ OtherNetworkWidget::~OtherNetworkWidget()
         delete m_password;
 }
 
-void OtherNetworkWidget::fillNetworkInfo(const Network& network)
+void OtherNetworkWidget::fillNetworkInfo(const QString& name)
 {
-        ui->ssid->setText(network.ssid());
-
-        // This does a reverse lookup of the QComboBox index for
-        // a given security protocol. Maybe a map in the future?
-        int index = 0;
-        for (quint16 i = 0; i < 4; ++i) {
-                if (securityChoices[i] == network.security()) {
-                        index = i;
-                        break;
-                }
-        }
-        ui->security->setCurrentIndex(index);
-        ui->password->setText(network.password());
+        ui->ssid->setText(name);
 }
 
 void OtherNetworkWidget::join()
 {
-        Network config;
-        config.setSsid(ui->ssid->text());
-        config.setSecurity(securityChoices[ui->security->currentIndex()]);
-        config.setPassword(ui->password->text());
-        NetworkManager::ref().addNetwork(config);
+        NetworkUtils::addWifiNetwork(ui->ssid->text(), ui->password->text());
         RootController::ref().dismissWidget();
-}
-
-void OtherNetworkWidget::securityChanged(int index)
-{
-        ui->password->setEnabled(index); // None == 0
 }
 
 #endif

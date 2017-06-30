@@ -7,30 +7,18 @@
 #include "ui_ManageNetworks.h"
 
 #include "NetworkManager.h"
-#include "NetworkItemModel.h"
-
-#include <QItemSelectionModel>
+#include "NetworkUtils.h"
 
 ManageNetworksWidget::ManageNetworksWidget(Device* device, QWidget* parent)
         : StandardWidget(device, parent)
         , ui(new Ui::ManageNetworks)
         , m_device(device)
-        , m_model(new NetworkItemModel(this))
 {
         ui->setupUi(this);
         performStandardSetup(tr("Manage Networks"));
 
-        m_model->connect(&NetworkManager::ref(),
-                         SIGNAL(networkAdded(Network)),
-                         SLOT(addNetwork(Network)));
-
-        m_model->connect(&NetworkManager::ref(),
-                         SIGNAL(networkForgotten(Network)),
-                         SLOT(removeNetwork(Network)));
-
-        ui->networks->setModel(m_model);
-
-        m_model->setNetworks(NetworkManager::ref().networks());
+        for (const QString& network: NetworkUtils::listSavedNetworks())
+                ui->networks->addItem(network);
 
         connect(ui->forget, SIGNAL(clicked()), SLOT(forget()));
 }
@@ -42,12 +30,10 @@ ManageNetworksWidget::~ManageNetworksWidget()
 
 void ManageNetworksWidget::forget()
 {
-        QItemSelectionModel* selectionModel = ui->networks->selectionModel();
-        QItemSelection selection = selectionModel->selection();
-        if (selection.indexes().size() != 1)
-                return;
-
-        NetworkManager::ref().forgetNetwork(m_model->indexToNetwork(selection.indexes()[0]));
+        if (ui->networks->currentItem()) {
+                QString network = ui->networks->currentItem()->text();
+                delete ui->networks->takeItem(ui->networks->row(ui->networks->currentItem()));
+        }
 }
 
 #endif

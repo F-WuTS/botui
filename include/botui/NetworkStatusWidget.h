@@ -14,8 +14,6 @@ class NetworkStatusWidget : public QWidget {
 public:
         NetworkStatusWidget(QWidget* parent = 0);
 
-        static bool isNetworkUp(const std::string networkName = "wlan0");
-
 protected:
         void paintEvent(QPaintEvent* event);
 

@@ -25,7 +25,6 @@ private slots:
 private:
         Ui::ManageNetworks* ui;
         Device* m_device;
-        NetworkItemModel* m_model;
 };
 
 #endif

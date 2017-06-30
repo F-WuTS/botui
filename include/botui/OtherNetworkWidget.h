@@ -20,11 +20,10 @@ public:
         OtherNetworkWidget(Device* device, QWidget* parent = 0);
         ~OtherNetworkWidget();
 
-        void fillNetworkInfo(const Network& network);
+        void fillNetworkInfo(const QString& name);
 
 private slots:
         void join();
-        void securityChanged(int index);
 
 private:
         Ui::OtherNetworkWidget* ui;

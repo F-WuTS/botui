@@ -41,41 +41,6 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Security:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="security">
-       <item>
-        <property name="text">
-         <string>None</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>WPA</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>WEP</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Dynamic WEP</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
       <widget class="QLabel" name="label_3">

@@ -49,31 +49,6 @@ NetworkStatusWidget::NetworkStatusWidget(QWidget* parent)
         updateTimer->start(10000);
 }
 
-#ifdef WALLABY
-
-bool NetworkStatusWidget::isNetworkUp(const std::string networkName)
-{
-        bool wifi_up = false;
-
-        struct ifreq ifr;
-
-        memset(&ifr, 0, sizeof(ifr));
-        strcpy(ifr.ifr_name, networkName.c_str());
-
-        int dummy_fd = socket(AF_INET, SOCK_DGRAM, 0);
-
-        if (ioctl(dummy_fd, SIOCGIFFLAGS, &ifr) != -1) {
-                wifi_up = (ifr.ifr_flags & (IFF_UP | IFF_RUNNING)) == (IFF_UP | IFF_RUNNING);
-        } else {
-                // an error checking network status
-                wifi_up = false;
-        }
-
-        return wifi_up;
-}
-
-#endif
-
 void NetworkStatusWidget::paintEvent(QPaintEvent* event)
 {
         QPainter painter(this);
@@ -88,17 +63,9 @@ void NetworkStatusWidget::paintEvent(QPaintEvent* event)
         static const QColor red = QColor(250, 100, 100);
 // static const QColor orange = QColor(250, 127, 0);
 
-#ifdef WALLABY
-        const bool off = isNetworkUp("wlan0") == false;
+        const bool off = NetworkManager::ref().isOn();
         QColor color = off ? red : green;
         setWiFiStatusLED(!off);
-#else
-        const bool off = !NetworkManager::ref().isOn();
-        QColor color = off ? red : green;
-        if (!off && NetworkManager::ref().state() < NetworkManager::Activated) {
-                color = orange;
-        }
-#endif
 
         painter.setPen(QPen(color, w / 10));
         painter.setBrush(color);
