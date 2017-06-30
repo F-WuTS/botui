@@ -61,6 +61,17 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="calibration">
+         <property name="text">
+          <string>Calibration</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../rc/icons.qrc">
+           <normaloff>:/icons/monitor_edit.png</normaloff>:/icons/monitor_edit.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>

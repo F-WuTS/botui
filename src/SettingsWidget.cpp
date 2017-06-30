@@ -4,7 +4,6 @@
 #include "RootController.h"
 #include "StatusBar.h"
 #include "Device.h"
-#include "Calibrate.h"
 #include "Options.h"
 
 #include "NetworkSettingsWidget.h"
@@ -14,7 +13,7 @@
 #include "BatterySettingsWidget.h"
 #include "CameraSettingsWidget.h"
 
-#include <QDebug>
+#include <QProcess>
 
 SettingsWidget::SettingsWidget(Device* device, QWidget* parent)
         : StandardWidget(device, parent)
@@ -29,6 +28,7 @@ SettingsWidget::SettingsWidget(Device* device, QWidget* parent)
         connect(ui->cameraView, SIGNAL(clicked()), SLOT(cameraView()));
         connect(ui->language, SIGNAL(clicked()), SLOT(language()));
         connect(ui->network, SIGNAL(clicked()), SLOT(network()));
+        connect(ui->calibration, SIGNAL(clicked()), SLOT(calibrate()));
 }
 
 SettingsWidget::~SettingsWidget()
@@ -64,4 +64,12 @@ void SettingsWidget::cameraView()
 void SettingsWidget::network()
 {
         RootController::ref().presentWidget(new NetworkSettingsWidget(device()));
+}
+
+void SettingsWidget::calibrate()
+{
+        QProcess process;
+
+        process.start("xinput_calibrator");
+        process.waitForFinished();
 }

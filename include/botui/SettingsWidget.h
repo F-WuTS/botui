@@ -20,6 +20,7 @@ public slots:
         void battery();
         void cameraView();
         void network();
+        void calibrate();
 
 private:
         Ui::SettingsWidget* ui;
