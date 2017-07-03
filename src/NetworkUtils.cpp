@@ -83,7 +83,8 @@ void NetworkUtils::connectToWifi(const QString& name)
 QString NetworkUtils::getCurrentNetwork()
 {
         QString ret = executeCommand("wpa_cli status");
-        return ret.split('\n').filter("ssid").first().section('=', 1, 1);
+
+        return ret.contains("ssid") ? ret.split('\n').filter("ssid").first().section('=', 1, 1) : "Not connected";
 }
 
 void NetworkUtils::addWifiNetwork(const QString& name, const QString& password)
