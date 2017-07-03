@@ -92,8 +92,8 @@ void NetworkUtils::addWifiNetwork(const QString& name, const QString& password)
         char* buffer = new char[256];
         snprintf(buffer, 256,
                 "\nnetwork={\n"
-                "        ssid=\"%s\"\n"
-                "        psk=\"%s\"\n"
+                "\tssid=\"%s\"\n"
+                "\tpsk=\"%s\"\n"
                 "}\n", name.toUtf8().data(), password.toUtf8().data()
         );
 
